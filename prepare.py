@@ -10,7 +10,9 @@ Outputs:
     ├ contest_name_c.py
     ├ contest_name_d.py
     ├ contest_name_e.py
-    └ contest_name_f.py
+    ├ contest_name_f.py
+    ├ contest_name_g.py
+    └ contest_name_h.py
 """
 
 
@@ -33,11 +35,11 @@ def main():
     if not dir_path.exists():
         dir_path.mkdir()
 
-    alphabets = ['a', 'b', 'c', 'd', 'e', 'f']
+    alphabets = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h']
     problems = []
     for alpha in alphabets:
         problems.append(args.contest_name.lower() + '_' + alpha + '.py')
-    
+
     for file_name in problems:
         file_path = pathlib.Path(args.contest_name + '/' + file_name)
         if not file_path.exists():
