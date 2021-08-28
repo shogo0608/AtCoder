@@ -1,12 +1,15 @@
-# 2021/08/05
+# 2021/08/28
+
+from collections import defaultdict
 
 N = int(input())
 A = list(map(int, input().split()))
 
+modulo_cnt = defaultdict(int)
+for a in A:
+    modulo_cnt[a%200] += 1
 ans = 0
-for i in range(N):
-    for j in range(i+1, N):
-        if (A[j] - A[i]) % 200 == 0:
-            ans += 1
+for v in modulo_cnt.values():
+    ans += v * (v-1) // 2
 
 print(ans)

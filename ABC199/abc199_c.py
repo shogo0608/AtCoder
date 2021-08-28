@@ -1,16 +1,27 @@
-# 2021/08/08
+# 2021/08/28
 
 N = int(input())
-S = input()
+S = list(input())
 Q = int(input())
+queries = [tuple(map(int, input().split())) for _ in range(Q)]
 
-order = list(range(2*N))
-for _ in range(Q):
-    T, A, B = map(int, input().split())
-    if T == 1:
-        order[A-1], order[B-1] = order[B-1], order[A-1]
-    else:
-        order[:N], order[N:] = order[N:], order[:N]
+swap_flag = -1
+for t, a, b in queries:
+    a, b = a-1, b-1
+    if t == 1:
+        if swap_flag == 1:
+            if a < N:
+                a += N
+            else:
+                a -= N
+            if b < N:
+                b += N
+            else:
+                b -= N
+        S[a], S[b] = S[b], S[a]
+    if t == 2:
+        swap_flag *= -1
+if swap_flag == 1:
+    S[:N], S[N:] = S[N:], S[:N]
 
-for o in order:
-    print(S[o], end="")
+print(*S, sep='')
