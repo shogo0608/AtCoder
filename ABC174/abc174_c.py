@@ -4,7 +4,7 @@ K = int(input())
 
 a = 7 % K
 s = set()
-for i in range(1, K):
+for i in range(1, K+1):
     if a == 0:
         print(i)
         break
