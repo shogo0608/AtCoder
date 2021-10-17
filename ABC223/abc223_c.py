@@ -6,14 +6,19 @@ for _ in range(N):
     A.append(a)
     B.append(b)
 
-tl = [0]
-tr = [0]
-dist = [0]
+time = [0]
 for i in range(N):
-    tl.append(tl[i] + A[i] / B[i])
-    tr.append(tr[i] + A[N-i-1] / B[N-i-1])
-    dist.append(dist[i] + A[i])
+    time.append(time[i] + A[i] / B[i])
+conflict_time = time[-1] / 2
+ans = 0
+for i in range(N):
+    if time[i + 1] < conflict_time:
+        ans += A[i]
+    elif time[i + 1] == conflict_time:
+        ans += A[i]
+        break
+    else:
+        ans += B[i] * (conflict_time - time[i])
+        break
 
-for i in range(N):
-    
-    print(dist[i] + (A[i] + (tr[i+1] - tl[i]) * B[i]) / 2)
+print(ans)
